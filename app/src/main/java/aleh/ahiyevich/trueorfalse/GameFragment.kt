@@ -114,7 +114,7 @@ class GameFragment : Fragment() {
             counterHealth--
             health.text = counterHealth.toString()
         } else {
-            //Если закончились жизни, то открывается диалог с тайером 
+            //Если закончились жизни, то открывается диалог с тайером
             Toast.makeText(requireContext(), "open dialog", Toast.LENGTH_SHORT).show()
             counterHealth = 0
             health.text = counterHealth.toString()
