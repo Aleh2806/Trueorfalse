@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
+
+    <androidx.cardview.widget.CardView
+        android:backgroundTint="#E4DBDB"
+        app:cardCornerRadius="20dp"
+        android:id="@+id/dialog_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="100"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/first_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="100"
+                    app:layout_constraintBottom_toTopOf="@id/second_container"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/dialog_comment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:gravity="center_horizontal"
+                            android:text="Действительно ли в году 12 месяцев? true, Да, действительно, в году 12 месяцев Да, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действителДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевДа, действительно, в году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdvв году 12 месяцевьно, в году 12 месяцевДа, действительно,vdsvsdvsdv"
+                            app:layout_constraintBottom_toTopOf="@+id/btn_next"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                    </androidx.core.widget.NestedScrollView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/second_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="55dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="#4CAF50"
+                    android:text="дальше"
+                    android:textSize="18sp"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_exit_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginHorizontal="55dp"
+                        android:layout_marginBottom="5dp"
+                        android:backgroundTint="#4CAF50"
+                        android:text="Закрыть"
+                        android:visibility="gone"
+                        android:textSize="18sp"
+                        app:cornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
