@@ -1,6 +1,7 @@
 package aleh.ahiyevich.trueorfalse
 
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import java.util.*
 
@@ -51,36 +53,39 @@ class GameFragment : Fragment() {
         health.text = counterHealth.toString()
 
 
-        btnTrue.setOnClickListener { answer = true
+        btnTrue.setOnClickListener {
+            answer = true
             checkAnswer(answer)
         }
 
-        btnFalse.setOnClickListener { answer = false
+        btnFalse.setOnClickListener {
+            answer = false
             checkAnswer(answer)
         }
     }
 
 
     private fun checkAnswer(answer: Boolean) {
-            if (counterHealth > 0){
-                if (answer == data[counterQuestions].answer) {
-                    checkSizeQuestions()
-                } else {
-                    counterHealth--
-                    health.text = counterHealth.toString()
-                    Toast.makeText(requireContext(), "Health = $counterHealth", Toast.LENGTH_SHORT).show()
-                    if (counterHealth == 0){
-                        counterHealth = 0
-                        health.text = counterHealth.toString()
-                        openDialogTimer()
-                    }
-                }
-             } else {
-                counterHealth = 0
+        if (counterHealth > 0) {
+            if (answer == data[counterQuestions].answer) {
+                checkSizeQuestions()
+            } else {
+                counterHealth--
                 health.text = counterHealth.toString()
-                openDialogTimer()
+                Toast.makeText(requireContext(), "Health = $counterHealth", Toast.LENGTH_SHORT)
+                    .show()
+                if (counterHealth == 0) {
+                    counterHealth = 0
+                    health.text = counterHealth.toString()
+                    openDialogTimer()
+                }
             }
+        } else {
+            counterHealth = 0
+            health.text = counterHealth.toString()
+            openDialogTimer()
         }
+    }
 
 
     private fun checkSizeQuestions() {
@@ -106,6 +111,8 @@ class GameFragment : Fragment() {
         dialog.setCancelable(false)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
+
+        // startTimer
 
         view.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
             dialog.dismiss()
@@ -167,6 +174,32 @@ class GameFragment : Fragment() {
                 "Да, действительно, это 3"
             )
         )
+    }
+
+    override fun onStop() {
+        super.onStop()
+        // Сохраняю данные о жизнях и позиции прошедшего вопроса
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        editor.putInt("countHealth", counterHealth)
+        editor.putInt("counterQuestion", counterQuestions)
+
+        editor.apply()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Воспроизвожу данные о жизнях и позиции, где закончил играть игрок
+        val sharedPreferences =
+            requireActivity().getSharedPreferences("prefs", AppCompatActivity.MODE_PRIVATE)
+
+        counterHealth = sharedPreferences.getInt("countHealth", 3)
+        health.text = counterHealth.toString()
+        counterQuestions = sharedPreferences.getInt("counterQuestion", 0)
+        questionText.text = data[counterQuestions].question
+
     }
 
 }
