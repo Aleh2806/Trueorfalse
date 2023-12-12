@@ -34,7 +34,7 @@ class GameFragment : Fragment() {
 
     private var timerRunning = false
     private var timer: CountDownTimer? = null
-    private var timeToFinish = 10800000L
+    private var timeToFinish = 3600000L
     private var endTimeToClose = 0L
 
 
@@ -130,6 +130,7 @@ class GameFragment : Fragment() {
         }
     }
 
+
     private fun openDialogComment() {
         val view = View.inflate(requireContext(), R.layout.dialog_comment_layout, null)
         val builder = AlertDialog.Builder(this.context)
@@ -154,6 +155,7 @@ class GameFragment : Fragment() {
         }
     }
 
+
     private fun timer(view: View) {
         endTimeToClose = System.currentTimeMillis() + timeToFinish
 
@@ -166,6 +168,7 @@ class GameFragment : Fragment() {
             override fun onFinish() {
                 timerRunning = false
                 Toast.makeText(requireContext(), "Timer Finished", Toast.LENGTH_SHORT).show()
+                //TODO: Сделать пуш уведомление по завершению таймера
             }
 
         }.start()
@@ -177,14 +180,14 @@ class GameFragment : Fragment() {
         timerView = view.findViewById(R.id.timer) // Новое добавил по таймеру
 
         val seconds = (timeToFinish / 1000) % 60
-        val minutes = (timeToFinish / 1000) / 60 / 3
-        val hours = ((timeToFinish / 1000) / 60 ) / 60
+        val minutes = (timeToFinish /1000) / 60
 
         val formattedTime =
-            String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
+            String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
 
         timerView.text = formattedTime
     }
+
 
     private fun addData() {
 
@@ -213,6 +216,7 @@ class GameFragment : Fragment() {
         )
     }
 
+
     override fun onStop() {
         super.onStop()
         // Сохраняю данные о жизнях и позиции прошедшего вопроса
@@ -233,6 +237,7 @@ class GameFragment : Fragment() {
             timer?.cancel()
         }
     }
+
 
     override fun onStart() {
         super.onStart()
