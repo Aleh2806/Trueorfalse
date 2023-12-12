@@ -1,8 +1,8 @@
 package aleh.ahiyevich.trueorfalse
 
 import android.app.AlertDialog
-import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +21,7 @@ class GameFragment : Fragment() {
     private lateinit var health: TextView
     private lateinit var questionText: TextView
     private lateinit var commentText: TextView
+    private lateinit var timerView: TextView
     private lateinit var btnTrue: Button
     private lateinit var btnFalse: Button
     private lateinit var btnNext: Button
@@ -32,6 +33,10 @@ class GameFragment : Fragment() {
     private var counterQuestions = 0
 
     private var timerRunning = false
+    private var timer: CountDownTimer? = null
+    private var timeToFinish = 10800000L
+    private var endTimeToClose = 0L
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -110,9 +115,9 @@ class GameFragment : Fragment() {
         val dialog = builder.create()
         dialog.setCancelable(false)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        timer(view)
         dialog.show()
 
-        // startTimer
 
         view.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
             dialog.dismiss()
@@ -147,6 +152,38 @@ class GameFragment : Fragment() {
         btnCloseComment.setOnClickListener {
             dialog.dismiss()
         }
+    }
+
+    private fun timer(view: View) {
+        endTimeToClose = System.currentTimeMillis() + timeToFinish
+
+        timer = object : CountDownTimer(timeToFinish, 1000) {
+            override fun onTick(millisToFinish: Long) {
+                timeToFinish = millisToFinish
+                updateTimer(view)
+            }
+
+            override fun onFinish() {
+                timerRunning = false
+                Toast.makeText(requireContext(), "Timer Finished", Toast.LENGTH_SHORT).show()
+            }
+
+        }.start()
+        timerRunning = true
+    }
+
+
+    private fun updateTimer(view: View){
+        timerView = view.findViewById(R.id.timer) // Новое добавил по таймеру
+
+        val seconds = (timeToFinish / 1000) % 60
+        val minutes = (timeToFinish / 1000) / 60 / 3
+        val hours = ((timeToFinish / 1000) / 60 ) / 60
+
+        val formattedTime =
+            String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds)
+
+        timerView.text = formattedTime
     }
 
     private fun addData() {
@@ -186,7 +223,15 @@ class GameFragment : Fragment() {
         editor.putInt("countHealth", counterHealth)
         editor.putInt("counterQuestion", counterQuestions)
 
+        editor.putLong("timeToFinish",timeToFinish)
+        editor.putLong("endTimeToClose",endTimeToClose)
+        editor.putBoolean("timerRunning",timerRunning)
+
         editor.apply()
+
+        if (timer != null){
+            timer?.cancel()
+        }
     }
 
     override fun onStart() {
@@ -199,6 +244,14 @@ class GameFragment : Fragment() {
         health.text = counterHealth.toString()
         counterQuestions = sharedPreferences.getInt("counterQuestion", 0)
         questionText.text = data[counterQuestions].question
+        timerRunning = sharedPreferences.getBoolean("timerRunning", false)
+
+        if (timerRunning){
+            endTimeToClose = sharedPreferences.getLong("endTimeToClose", 0)
+            timeToFinish = endTimeToClose - System.currentTimeMillis()
+        } else {
+            Toast.makeText(requireContext(), "Timer not started", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
